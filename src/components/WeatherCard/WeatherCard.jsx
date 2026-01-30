@@ -3,15 +3,12 @@ import { weatherTypes, defaultWeatherTypes } from "../../utils/constants";
 
 function WeatherCard({ weather }) {
   const filteredTypes = weatherTypes.filter((type) => {
-    // console.log(type.day, type.condition);
-    return type.day === weather.isday && type.condition === weather.condition;
+    return type.day === weather.isDay && type.condition === weather.condition;
   });
-
-  console.log(weather);
 
   let weatherType;
   if (filteredTypes.length === 0) {
-    weatherType = defaultWeatherTypes[weather.isday ? "day" : "night"];
+    weatherType = defaultWeatherTypes[weather.isDay ? "day" : "night"];
   } else {
     weatherType = filteredTypes[0];
   }

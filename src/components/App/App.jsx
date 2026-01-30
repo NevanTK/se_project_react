@@ -15,7 +15,7 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("preview");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
   const handleAddClick = () => {
@@ -61,6 +61,7 @@ function App() {
             id="name"
             className="modal__input"
             placeholder="Name"
+            required
           />
         </label>
         <label htmlFor="imageUrl" className="modal__lable">
@@ -70,6 +71,7 @@ function App() {
             id="imageUrl"
             className="modal__input"
             placeholder="Image URL"
+            required
           />
         </label>
         <fieldset className="modal__radio-btns">

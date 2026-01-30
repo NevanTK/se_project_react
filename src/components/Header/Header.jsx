@@ -1,6 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/Logo.svg";
-import avatar from "../../assets/Avatar.svg";
+import avatar from "../../assets/avatar.svg";
 
 function Header({ handleAddClick, weather }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -10,7 +10,7 @@ function Header({ handleAddClick, weather }) {
 
   return (
     <header className="header">
-      <img src={logo} className="header__logo" />
+      <img src={logo} className="header__logo" alt="WTWR logo" />
       <p className="header__setting">
         {currentDate}, {weather.city}
       </p>

@@ -2,6 +2,10 @@
   visibility: hidden;
 }
 
+.modal_opened {
+  visibility: visible;
+}
+
 .modal__container_image {
   width: 100%;
   max-width: 498px;
