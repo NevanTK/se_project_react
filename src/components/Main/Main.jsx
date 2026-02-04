@@ -7,11 +7,11 @@ function Main({ weather, handleCardClick }) {
   return (
     <main className="main">
       <WeatherCard weather={weather} />
-      <section className="cards">
-        <p className="cards__text">
-          Today is {weather.temp.F} &deg;F you may want to wear:
+      <section className="main__cards">
+        <p className="main__cards-text">
+          Today is {weather.temp.F} &deg;F / you may want to wear:
         </p>
-        <ul className="cards__list">
+        <ul className="main__cards-list">
           {defaultClothingItems
             .filter((item) => {
               return item.weather === weather.type;
