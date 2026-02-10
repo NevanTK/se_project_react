@@ -16,6 +16,7 @@
 }
 
 .modal__close-btn_image {
+  background-image: url("../../assets/Close.svg");
   color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 24px;
@@ -35,12 +36,14 @@
   border-top-right-radius: 16px;
 }
 
+.modal__footer {
+  margin: 12px 0 32px 32px;
+}
+
 .modal__caption {
   font-size: 16px;
-  margin: 0 0 0 32px;
 }
 
 .modal__weather {
   font-size: 16px;
-  margin: 12px 0 32px 32px;
 }

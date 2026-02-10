@@ -28,7 +28,7 @@ function ModalWithForm({
             className="modal__submit-btn"
             onClick={closeActiveModal}
           >
-            <label className="submit__lable">{buttonText}</label>
+            <label className="submit__label">{buttonText}</label>
           </button>
         </form>
       </div>
