@@ -3,9 +3,18 @@
   align-items: center;
   padding: 32px 0px 28px;
   font-size: 20px;
+  justify-content: space-between;
 }
 
-.header__setting {
+.header__left {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
   margin: 0;
 }
 

@@ -18,8 +18,7 @@ function ModalWithForm({
           className="modal__close-btn"
           onClick={closeActiveModal}
         >
-          Close
-          {/* <img src="../../assets/Close.svg" alt="Close" /> */}
+          <img src="../../assets/Close.svg" alt="Close" />
         </button>
         <form className="modal__form">
           {children}

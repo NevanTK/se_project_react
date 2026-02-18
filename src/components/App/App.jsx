@@ -8,6 +8,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
+import { defaultClothingItems } from "../../utils/constants.js";
 
 function App() {
   const [weather, setWeather] = useState({
@@ -17,6 +18,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [defaultItems, setDefaultItems] = useState(defaultClothingItems);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -44,7 +46,11 @@ function App() {
     <div className="app">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weather={weather} />
-        <Main weather={weather} handleCardClick={handleCardClick} />
+        <Main
+          weather={weather}
+          handleCardClick={handleCardClick}
+          defaultItems={defaultItems}
+        />
         <Footer />
       </div>
       <ModalWithForm

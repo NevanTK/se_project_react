@@ -1,4 +1,5 @@
 .weather-card {
+  color: #ffffff;
   display: flex;
   height: 80px;
   border: none;
