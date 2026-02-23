@@ -1,6 +1,8 @@
 import "./ItemModal.css";
 
-function ItemModal({ card, activeModal, closeActiveModal }) {
+function ItemModal({ card, activeModal, closeActiveModal, useModalClose }) {
+  useModalClose(activeModal === "preview", closeActiveModal);
+
   return (
     <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
       <div className="modal__container modal__container_image">
@@ -8,9 +10,7 @@ function ItemModal({ card, activeModal, closeActiveModal }) {
           type="button"
           className="modal__close-btn modal__close-btn_image"
           onClick={closeActiveModal}
-        >
-          <img src="../../assets/Close.svg" alt="Close" />
-        </button>
+        ></button>
         <img src={card.link} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>

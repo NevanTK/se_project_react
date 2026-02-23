@@ -9,6 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
 import { defaultClothingItems } from "../../utils/constants.js";
+import { use } from "react";
 
 function App() {
   const [weather, setWeather] = useState({
@@ -18,7 +19,33 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [defaultItems, setDefaultItems] = useState(defaultClothingItems);
+  const [defaultItems, setDefaultItems] = useState([]);
+
+  function useModalClose(isOpen, onCLose) {
+    useEffect(() => {
+      if (!isOpen) return;
+
+      const handleKeyDown = (event) => {
+        if (event.key === "Escape") {
+          onCLose();
+        }
+      };
+
+      const handleOverlayClick = (event) => {
+        if (event.target.classList.contains("modal_opened")) {
+          onCLose();
+        }
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("click", handleOverlayClick);
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("click", handleOverlayClick);
+      };
+    }, [isOpen, onCLose]);
+  }
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -32,6 +59,10 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+
+  useEffect(() => {
+    setDefaultItems(defaultClothingItems);
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, apiKey)
@@ -58,6 +89,7 @@ function App() {
         title="New Garment"
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
+        useModalClose={useModalClose}
       >
         {" "}
         <label htmlFor="name" className="modal__lable">
@@ -115,6 +147,7 @@ function App() {
         card={selectedCard}
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
+        useModalClose={useModalClose}
       />
     </div>
   );
