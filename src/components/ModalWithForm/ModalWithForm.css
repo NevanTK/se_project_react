@@ -37,6 +37,8 @@
 }
 
 .modal__input {
+  display: flex;
+  width: 100%;
   max-width: 496px;
   box-sizing: border-box;
   margin-top: 8px;
@@ -83,7 +85,7 @@
 .modal__radio-btns {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
   border: none;
   padding: 0;
 }
@@ -99,6 +101,7 @@
 
 .modal__submit-btn {
   width: 124px;
+  width: fit-content;
   height: 36px;
   margin-top: 32px;
   padding: 12px 24px;
@@ -109,6 +112,11 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+.submit-label {
+  text-align: start;
 }
 
 .modal__submit-btn:hover {
