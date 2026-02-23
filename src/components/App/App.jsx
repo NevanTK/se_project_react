@@ -9,7 +9,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
 import { defaultClothingItems } from "../../utils/constants.js";
-import useEscapeClose from "../Hooks/useModalClose.js";
+import { useEscapeClose } from "../Hooks/useModalClose.js";
 
 function App() {
   const [weather, setWeather] = useState({
