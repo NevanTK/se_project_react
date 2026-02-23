@@ -1,18 +1,16 @@
 import "./ModalWithForm.css";
+import useEscapeClose from "../Hooks/useModalClose.js";
 
 function ModalWithForm({
   children,
   buttonText,
   title,
-  activeModal,
   closeActiveModal,
-  useModalClose,
+  isOpen,
 }) {
-  useModalClose(activeModal === "add-garment", closeActiveModal);
+  // useEscapeClose(isOpen, closeActiveModal);
   return (
-    <div
-      className={`modal ${activeModal === "add-garment" ? "modal_opened" : ""}`}
-    >
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
         <button

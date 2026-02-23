@@ -1,10 +1,11 @@
 import "./ItemModal.css";
+import useEscapeClose from "../Hooks/useModalClose.js";
 
-function ItemModal({ card, activeModal, closeActiveModal, useModalClose }) {
-  useModalClose(activeModal === "preview", closeActiveModal);
+function ItemModal({ card, closeActiveModal, isOpen }) {
+  // useEscapeClose(isOpen, closeActiveModal);
 
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container modal__container_image">
         <button
           type="button"
