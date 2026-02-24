@@ -9,7 +9,6 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
 import { defaultClothingItems } from "../../utils/constants.js";
-import useEscapeClose from "../../Hooks/useModalClose.js";
 
 function App() {
   const [weather, setWeather] = useState({
@@ -17,6 +16,7 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [defaultItems, setDefaultItems] = useState([]);
