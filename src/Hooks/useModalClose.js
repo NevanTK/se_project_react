@@ -1,4 +1,4 @@
-export const useEscapeClose = (isOpen, closeActiveModal) => {
+function useEscapeClose(isOpen, closeActiveModal) {
   useEffect(() => {
     if (!isOpen) return;
 
@@ -22,4 +22,6 @@ export const useEscapeClose = (isOpen, closeActiveModal) => {
       document.removeEventListener("click", handleOverlayClick);
     };
   }, [isOpen, closeActiveModal]);
-};
+}
+
+export default useEscapeClose;

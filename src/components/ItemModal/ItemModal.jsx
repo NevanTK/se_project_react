@@ -1,5 +1,5 @@
 import "./ItemModal.css";
-import useEscapeClose from "../Hooks/useModalClose.js";
+import useEscapeClose from "../../Hooks/useModalClose.js";
 
 function ItemModal({ card, closeActiveModal, isOpen }) {
   // useEscapeClose(isOpen, closeActiveModal);
