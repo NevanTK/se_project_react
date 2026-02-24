@@ -8,7 +8,7 @@ function ModalWithForm({
   closeActiveModal,
   isOpen,
 }) {
-  // useEscapeClose(isOpen, closeActiveModal);
+  useEscapeClose(isOpen, closeActiveModal);
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container">

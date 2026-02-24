@@ -2,7 +2,7 @@ import "./ItemModal.css";
 import useEscapeClose from "../../Hooks/useModalClose.js";
 
 function ItemModal({ card, closeActiveModal, isOpen }) {
-  // useEscapeClose(isOpen, closeActiveModal);
+  useEscapeClose(isOpen, closeActiveModal);
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>

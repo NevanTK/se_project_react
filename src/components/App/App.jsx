@@ -63,7 +63,6 @@ function App() {
         title="New Garment"
         isOpen={activeModal === "add-garment"}
         closeActiveModal={closeActiveModal}
-        useEscapeClose={useEscapeClose}
       >
         {" "}
         <label htmlFor="name" className="modal__lable">
@@ -121,7 +120,6 @@ function App() {
         card={selectedCard}
         isOpen={activeModal === "preview"}
         closeActiveModal={closeActiveModal}
-        useEscapeClose={useEscapeClose}
       />
     </div>
   );
