@@ -2,7 +2,7 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 
-function Main({ weather, handleCardClick, defaultItems }) {
+function Main({ weather, handleCardClick, defaultItems, temperatureUnit }) {
   return (
     <main className="main">
       <WeatherCard weather={weather} />
