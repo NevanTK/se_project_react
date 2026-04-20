@@ -1,0 +1,15 @@
+.clothing-section {
+  display: flex;
+  flex-grow: 1;
+}
+
+.clothing__rack {
+  display: flex;
+}
+
+.clothes-section__cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 283px);
+  gap: 20px;
+  padding: 0;
+}

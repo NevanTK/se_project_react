@@ -3,10 +3,11 @@ import useEscapeClose from "../../Hooks/useModalClose.js";
 
 function ModalWithForm({
   children,
-  buttonText,
+  buttonText = "Save",
   title,
   closeActiveModal,
   isOpen,
+  onSubmit,
 }) {
   useEscapeClose(isOpen, closeActiveModal);
   return (
@@ -20,7 +21,7 @@ function ModalWithForm({
         >
           {/* <img src="../../assets/Close.svg" alt="Close" /> */}
         </button>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <button
             type="submit"
