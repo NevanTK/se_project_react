@@ -13,6 +13,7 @@ import { coordinates, apiKey } from "../../utils/constants.js";
 import { defaultClothingItems } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { getItems } from "../../utils/api.js";
+import { deleteItem } from "../../utils/api.js";
 
 function App() {
   const [weather, setWeather] = useState({
@@ -48,6 +49,13 @@ function App() {
     setSelectedCard(card);
   };
 
+  const deleteItem = (itemId) => {
+    return fetch(`${baseUrl}/items/${itemId}`, {
+      method: "DELETE",
+      headers,
+    }).then(handleServerResonse);
+  };
+
   const onAddItem = (item) => {
     const newItem = {
       name: item.name,
@@ -80,6 +88,13 @@ function App() {
       .catch(console.error);
   }, []);
 
+  // deleteItem = (itemId) => {
+  //   return fetch(`${baseUrl}/items/${itemId}`, {
+  //     method: "DELETE",
+  //     headers,
+  //   }).then(handleServerResonse);
+  // };
+
   //add delete item functionality in profile page and add delete button to item card in profile page
   //declare delete function in app component that takes item id as argument and calls api to delete item from database and then updates clothing items state by filtering out the deleted item
   //pass delete function to profile page and then to item card and then add delete button to item card and then add on click event to delete button that calls the delete function with the item id and then remove the item from the clothing items state in the app component
@@ -109,6 +124,7 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
+                  deleteItem={deleteItem}
                 />
               }
             />
@@ -136,6 +152,16 @@ function App() {
           card={selectedCard}
           isOpen={activeModal === "preview"}
           closeActiveModal={closeActiveModal}
+          deleteItem={() => {
+            deleteItem(selectedCard._id)
+              .then(() => {
+                setClothingItems(
+                  clothingItems.filter((item) => item._id !== selectedCard._id),
+                );
+                closeActiveModal();
+              })
+              .catch(console.error);
+          }}
         />
       </div>
       //{" "}
