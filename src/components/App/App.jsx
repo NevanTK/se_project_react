@@ -49,13 +49,6 @@ function App() {
     setSelectedCard(card);
   };
 
-  const deleteItem = (itemId) => {
-    return fetch(`${baseUrl}/items/${itemId}`, {
-      method: "DELETE",
-      headers,
-    }).then(handleServerResonse);
-  };
-
   const onAddItem = (item) => {
     const newItem = {
       name: item.name,
@@ -115,6 +108,7 @@ function App() {
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   temperatureUnit={temperatureUnit}
+                  deleteItem={deleteItem}
                 />
               }
             />
@@ -163,8 +157,7 @@ function App() {
               .catch(console.error);
           }}
         />
-      </div>
-      //{" "}
+      </div>{" "}
     </CurrentTemperatureUnitContext.Provider>
   );
 }

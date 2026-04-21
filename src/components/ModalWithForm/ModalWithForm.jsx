@@ -23,11 +23,7 @@ function ModalWithForm({
         </button>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button
-            type="submit"
-            className="modal__submit-btn"
-            onClick={closeActiveModal}
-          >
+          <button type="submit" className="modal__submit-btn">
             <label className="submit__label">{buttonText}</label>
           </button>
         </form>

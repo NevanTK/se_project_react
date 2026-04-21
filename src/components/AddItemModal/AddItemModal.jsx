@@ -1,6 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
-import { use } from "react";
 
 const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
   const defaultValues = {
@@ -26,7 +25,7 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
       closeActiveModal={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__lable">
+      <label htmlFor="name" name="name" className="modal__lable">
         Name{" "}
         <input
           type="text"
@@ -38,7 +37,7 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
           required
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__lable">
+      <label htmlFor="imageUrl" name="imageUrl" className="modal__lable">
         Image{" "}
         <input
           type="url"

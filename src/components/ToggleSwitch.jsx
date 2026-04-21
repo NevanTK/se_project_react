@@ -7,7 +7,6 @@ export default function ToggleSwitch() {
     CurrentTemperatureUnitContext,
   );
 
-  // console.log(temperatureUnit);
   return (
     <label className="toggleSwitch">
       <input
