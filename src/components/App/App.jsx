@@ -14,6 +14,7 @@ import { defaultClothingItems } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { getItems } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal.jsx";
 
 function App() {
   const [weather, setWeather] = useState({
@@ -29,11 +30,11 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   // const [defaultItems, setDefaultItems] = useState(defaultClothingItems);
-  const [temperatureUnit, setTemperatureUnit] = useState("F");
+  const [currentTemperatureUnit, setTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleToggleSwitchChange = () => {
-    setTemperatureUnit(temperatureUnit === "F" ? "C" : "F");
+    setTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
   const handleAddClick = () => {
@@ -47,6 +48,10 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleDeleteClick = () => {
+    setActiveModal("delete-confirmation");
   };
 
   const onAddItem = (item) => {
@@ -94,7 +99,7 @@ function App() {
 
   return (
     <CurrentTemperatureUnitContext.Provider
-      value={{ temperatureUnit, handleToggleSwitchChange }}
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
       <div className="app">
         <div className="page__content">
@@ -107,7 +112,7 @@ function App() {
                   weather={weather}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
-                  temperatureUnit={temperatureUnit}
+                  temperatureUnit={currentTemperatureUnit}
                   deleteItem={deleteItem}
                 />
               }
@@ -146,16 +151,33 @@ function App() {
           card={selectedCard}
           isOpen={activeModal === "preview"}
           closeActiveModal={closeActiveModal}
-          deleteItem={() => {
-            deleteItem(selectedCard._id)
-              .then(() => {
-                setClothingItems(
-                  clothingItems.filter((item) => item._id !== selectedCard._id),
-                );
-                closeActiveModal();
-              })
-              .catch(console.error);
-          }}
+          handleDeleteClick={handleDeleteClick}
+
+          // deleteItem={() => {
+          //   deleteItem(selectedCard._id)
+          //     .then(() => {
+          //       setClothingItems(
+          //         clothingItems.filter((item) => item._id !== selectedCard._id),
+          //       );
+          //       closeActiveModal();
+          //     })
+          //     .catch(console.error);
+          // }}
+        />
+
+        <DeleteItemModal
+          isOpen={activeModal === "delete-confirmation"}
+          closeActiveModal={closeActiveModal}
+          // deleteItem={() => {
+          //   deleteItem(selectedCard._id)
+          //     .then(() => {
+          //       setClothingItems(
+          //         clothingItems.filter((item) => item._id !== selectedCard._id),
+          //       );
+          //       closeActiveModal();
+          //     })
+          //     .catch(console.error);
+          // }}
         />
       </div>{" "}
     </CurrentTemperatureUnitContext.Provider>

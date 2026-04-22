@@ -1,7 +1,13 @@
 import "./ItemModal.css";
 import useEscapeClose from "../../Hooks/useModalClose.js";
 
-function ItemModal({ card, closeActiveModal, isOpen, deleteItem }) {
+function ItemModal({
+  card,
+  closeActiveModal,
+  isOpen,
+  handleDeleteClick,
+  deleteItem,
+}) {
   useEscapeClose(isOpen, closeActiveModal);
 
   return (
@@ -15,7 +21,7 @@ function ItemModal({ card, closeActiveModal, isOpen, deleteItem }) {
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
-          <button className="modal__delete-btn" onClick={deleteItem}>
+          <button className="modal__delete-btn" onClick={handleDeleteClick}>
             Delete Item
           </button>
           <p className="modal__weather">Weather: {card.weather}</p>
