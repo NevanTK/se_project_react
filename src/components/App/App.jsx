@@ -10,7 +10,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
-import { defaultClothingItems } from "../../utils/constants.js";
+// import { defaultClothingItems } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { getItems } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
@@ -31,7 +31,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   // const [defaultItems, setDefaultItems] = useState(defaultClothingItems);
   const [currentTemperatureUnit, setTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleToggleSwitchChange = () => {
     setTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -69,6 +69,10 @@ function App() {
       .catch(console.error);
   };
 
+  const onDeleteItem = () => {
+    deleteItem(selectedCard.id)
+  }
+
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -83,15 +87,12 @@ function App() {
         setClothingItems(data);
       })
 
+      
+
       .catch(console.error);
   }, []);
 
-  // deleteItem = (itemId) => {
-  //   return fetch(`${baseUrl}/items/${itemId}`, {
-  //     method: "DELETE",
-  //     headers,
-  //   }).then(handleServerResonse);
-  // };
+
 
   //add delete item functionality in profile page and add delete button to item card in profile page
   //declare delete function in app component that takes item id as argument and calls api to delete item from database and then updates clothing items state by filtering out the deleted item
@@ -168,6 +169,7 @@ function App() {
         <DeleteItemModal
           isOpen={activeModal === "delete-confirmation"}
           closeActiveModal={closeActiveModal}
+          onDeleteItem={onDeleteItem}
           // deleteItem={() => {
           //   deleteItem(selectedCard._id)
           //     .then(() => {

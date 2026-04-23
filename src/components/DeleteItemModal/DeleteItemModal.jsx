@@ -5,7 +5,14 @@ export default function DeleteItemModal({
   onClose,
   closeActiveModal,
   deleteItem,
+  onDeleteItem,
 }) {
+
+function handleDeleteClick() {
+  onDeleteItem();
+  closeActiveModal();
+}
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="delete-modal__container">
@@ -22,7 +29,7 @@ export default function DeleteItemModal({
         <button
           type="button"
           className="delete-modal__delete-btn"
-          onClick={deleteItem}
+          onClick={handleDeleteClick}
         >
           Yes, delete item
         </button>

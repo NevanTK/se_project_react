@@ -10,7 +10,7 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
 
   const { values, handleChange } = useForm(defaultValues);
 
-  function handleSubmit(event) {
+    function handleSubmit(event) {
     event.preventDefault();
     onAddItem(values);
     onClose();
