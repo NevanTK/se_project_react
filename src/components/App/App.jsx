@@ -14,6 +14,7 @@ import { coordinates, apiKey } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { getItems } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
+import { addItem } from "../../utils/api.js";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal.jsx";
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
 
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  // const [defaultItems, setDefaultItems] = useState(defaultClothingItems);
   const [currentTemperatureUnit, setTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
@@ -48,6 +48,7 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+    console.log(card);
   };
 
   const handleDeleteClick = () => {
@@ -64,14 +65,21 @@ function App() {
     addItem(newItem)
       .then((addedItem) => {
         setClothingItems([addedItem, ...clothingItems]);
-        closeAllModals();
+        closeActiveModal();
       })
       .catch(console.error);
   };
 
   const onDeleteItem = () => {
-    deleteItem(selectedCard.id)
-  }
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== selectedCard._id),
+        );
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
 
   useEffect(() => {
     getWeather(coordinates, apiKey)
@@ -87,16 +95,8 @@ function App() {
         setClothingItems(data);
       })
 
-      
-
       .catch(console.error);
   }, []);
-
-
-
-  //add delete item functionality in profile page and add delete button to item card in profile page
-  //declare delete function in app component that takes item id as argument and calls api to delete item from database and then updates clothing items state by filtering out the deleted item
-  //pass delete function to profile page and then to item card and then add delete button to item card and then add on click event to delete button that calls the delete function with the item id and then remove the item from the clothing items state in the app component
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -114,7 +114,6 @@ function App() {
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                   temperatureUnit={currentTemperatureUnit}
-                  deleteItem={deleteItem}
                 />
               }
             />
@@ -153,33 +152,13 @@ function App() {
           isOpen={activeModal === "preview"}
           closeActiveModal={closeActiveModal}
           handleDeleteClick={handleDeleteClick}
-
-          // deleteItem={() => {
-          //   deleteItem(selectedCard._id)
-          //     .then(() => {
-          //       setClothingItems(
-          //         clothingItems.filter((item) => item._id !== selectedCard._id),
-          //       );
-          //       closeActiveModal();
-          //     })
-          //     .catch(console.error);
-          // }}
         />
 
         <DeleteItemModal
           isOpen={activeModal === "delete-confirmation"}
           closeActiveModal={closeActiveModal}
+          handleDeleteClick={handleDeleteClick}
           onDeleteItem={onDeleteItem}
-          // deleteItem={() => {
-          //   deleteItem(selectedCard._id)
-          //     .then(() => {
-          //       setClothingItems(
-          //         clothingItems.filter((item) => item._id !== selectedCard._id),
-          //       );
-          //       closeActiveModal();
-          //     })
-          //     .catch(console.error);
-          // }}
         />
       </div>{" "}
     </CurrentTemperatureUnitContext.Provider>

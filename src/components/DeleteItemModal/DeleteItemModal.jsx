@@ -7,11 +7,11 @@ export default function DeleteItemModal({
   deleteItem,
   onDeleteItem,
 }) {
-
-function handleDeleteClick() {
-  onDeleteItem();
-  closeActiveModal();
-}
+  function handleDeleteClick(evt) {
+    evt.preventDefault();
+    onDeleteItem();
+    closeActiveModal();
+  }
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
