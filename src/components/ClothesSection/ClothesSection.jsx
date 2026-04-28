@@ -9,15 +9,16 @@ export default function ClothesSection({
   return (
     <div className="clothes-section">
       <div className="clothes-section__rack">
-        <p>Clothing</p>
+        <p>Your Items</p>
         <button
           type="button"
           className="header__add-clothes-btn"
           onClick={handleAddClick}
         >
-          Add
+          + Add New
         </button>
       </div>
+
       <ul className="clothes-section__cards-list">
         {clothingItems.map((item) => {
           return (

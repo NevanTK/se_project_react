@@ -8,10 +8,10 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
     weather: "",
   };
 
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange, handleReset } = useForm(defaultValues);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
     onAddItem(values);
     onClose();
   }
@@ -32,7 +32,7 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
           id="name"
           className="modal__input"
           placeholder="Name"
-          value={values.name}
+          value={values ? values.name : ""}
           onChange={handleChange}
           required
         />

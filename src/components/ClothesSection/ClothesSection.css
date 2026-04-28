@@ -1,15 +1,32 @@
 .clothes-section {
   display: flex;
-  flex-grow: 1;
+  flex-direction: column;
+  margin-left: 112px;
+  /* gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none; */
+
+  /* flex-grow: 1; */
 }
 
 .clothes-section__rack {
   display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
 }
 
 .clothes-section__cards-list {
-  display: grid;
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  /* display: grid;
+flex-grow: 1;
   grid-template-columns: repeat(auto-fit, 283px);
   gap: 20px;
-  padding: 0;
+  padding: 0; */
 }
