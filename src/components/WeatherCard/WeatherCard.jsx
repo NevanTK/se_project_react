@@ -4,7 +4,7 @@ import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function WeatherCard({ weather }) {
-  const { temperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const filteredTypes = weatherTypes.filter((type) => {
     return type.day === weather.isDay && type.condition === weather.condition;
@@ -20,7 +20,7 @@ function WeatherCard({ weather }) {
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
-        {weather.temp[temperatureUnit]} &deg;{temperatureUnit}
+        {weather.temp[currentTemperatureUnit]} &deg;{currentTemperatureUnit}
       </p>
       <img
         src={weatherType?.url}
