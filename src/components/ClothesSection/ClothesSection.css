@@ -12,8 +12,8 @@
 
 .clothes-section__rack {
   display: flex;
+
   gap: 20px;
-  justify-content: space-evenly;
 }
 
 .clothes-section__cards-list {

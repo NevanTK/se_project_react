@@ -55,7 +55,7 @@ function App() {
     setActiveModal("delete-confirmation");
   };
 
-  const onAddItem = (item) => {
+  const onAddItem = (item, resetForm) => {
     const newItem = {
       name: item.name,
       imageUrl: item.imageUrl,
@@ -65,6 +65,7 @@ function App() {
     addItem(newItem)
       .then((addedItem) => {
         setClothingItems([addedItem, ...clothingItems]);
+        resetForm();
         closeActiveModal();
       })
       .catch(console.error);
