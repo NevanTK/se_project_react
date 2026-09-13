@@ -8,6 +8,7 @@ function Main({
   clothingItems,
   deleteItem,
   temperatureUnit,
+  onCardLike,
 }) {
   return (
     <main className="main">
@@ -29,6 +30,7 @@ function Main({
                   item={item}
                   onCardClick={handleCardClick}
                   deleteItem={deleteItem}
+                  onCardLike={onCardLike}
                 />
               );
             })}

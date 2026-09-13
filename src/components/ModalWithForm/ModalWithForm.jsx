@@ -4,13 +4,15 @@ import useEscapeClose from "../../Hooks/useModalClose.js";
 function ModalWithForm({
   children,
   buttonText = "Save",
+  secondaryButtonText,
+  secondaryButtonOnClick,
   title,
   closeActiveModal,
   isOpen,
   onSubmit,
 }) {
   useEscapeClose(isOpen, closeActiveModal);
-  return (
+   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
@@ -18,18 +20,30 @@ function ModalWithForm({
           type="button"
           className="modal__close-btn"
           onClick={closeActiveModal}
-        >
-          {/* <img src="../../assets/Close.svg" alt="Close" /> */}
-        </button>
+        />
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button type="submit" className="modal__submit-btn">
-            <label className="submit__label">{buttonText}</label>
-          </button>
+
+          <div className="modal__actions">
+            <button type="submit" className="modal__submit-btn">
+              {buttonText}
+            </button>
+
+            {secondaryButtonText && (
+              <button
+                type="button"
+                className="modal__secondary-btn"
+                onClick={secondaryButtonOnClick}
+              >
+                {secondaryButtonText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
 
 export default ModalWithForm;

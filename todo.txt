@@ -1,0 +1,6 @@
+protect /signin /signup /items
+make the api in task 3
+
+css to figma
+ask about uploading to git
+how to make avatar an initial

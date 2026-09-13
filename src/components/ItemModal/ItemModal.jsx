@@ -1,5 +1,7 @@
 import "./ItemModal.css";
 import useEscapeClose from "../../Hooks/useModalClose.js";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function ItemModal({
   card,
@@ -8,6 +10,9 @@ function ItemModal({
   handleDeleteClick,
   deleteItem,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = currentUser && card.owner === currentUser._id;
+  
   useEscapeClose(isOpen, closeActiveModal);
 
   return (
@@ -21,9 +26,13 @@ function ItemModal({
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
-          <button className="modal__delete-btn" onClick={handleDeleteClick}>
-            Delete Item
-          </button>
+{isOwn && (
+  <button
+    className="modal__delete-btn"
+    onClick={handleDeleteClick}
+  >
+    Delete item
+  </button>)}
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
       </div>

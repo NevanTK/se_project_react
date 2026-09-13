@@ -4,14 +4,14 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const handleServerResonse = (response) => {
+export const handleServerResponse = (response) => {
   return response.ok
     ? response.json()
     : Promise.reject(`Error: ${response.status}`);
 };
 
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`, { headers }).then(handleServerResonse);
+  return fetch(`${baseUrl}/items`, { headers }).then(handleServerResponse);
 };
 
 export const addItem = (item) => {
@@ -19,12 +19,19 @@ export const addItem = (item) => {
     method: "POST",
     headers,
     body: JSON.stringify(item),
-  }).then(handleServerResonse);
+  }).then(handleServerResponse);
 };
 
 export const deleteItem = (itemId) => {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers,
-  }).then(handleServerResonse);
+  }).then(handleServerResponse);
+};
+
+export const getCurrentUser = (token) => {
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+  return fetch(`${baseUrl}/users/me`, { headers: authHeaders }).then(handleServerResponse);
 };

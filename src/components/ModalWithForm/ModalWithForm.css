@@ -115,6 +115,20 @@
   justify-content: space-evenly;
 }
 
+.modal__secondary-btn {
+  background: transparent;
+  border: none;
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal__secondary-btn:hover {
+  transition: 0.3s;
+  opacity: 0.7;
+}
+
 .submit__label {
   text-align: start;
 }
