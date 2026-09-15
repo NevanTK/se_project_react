@@ -12,7 +12,6 @@ function Header({
   isLoggedIn,
   onLoginClick,
   onRegisterClick,
-  onSignOut,
   currentUser,
 }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -44,16 +43,16 @@ function Header({
                 <p className="header__username">
                   {(currentUser && currentUser.name) || "Profile"}
                 </p>
-                <img
-                  src={(currentUser && currentUser.avatar) || avatar}
-                  alt={(currentUser && currentUser.name) || "User"}
-                  className="header__avatar"
-                />
+                {currentUser && currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="header__avatar"
+                  />
+                ): (<span className="header__avatar-placeholder">{ currentUser.name.charAt(0) }</span>)}
               </div>
             </NavLink>
-            <button className="header__signout-btn" onClick={onSignOut}>
-              Sign out
-            </button>
+
           </>
         ) : (
           <>

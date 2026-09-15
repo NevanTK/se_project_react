@@ -1,6 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
 import { signIn } from "../../utils/auth.js";
+import { useState } from "react";
 
 const LoginModal = ({ isOpen, onClose, onSignIn }) => {
   const defaultValues = {
@@ -9,9 +10,11 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
   };
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
+  const [loginError, setLoginError] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+    setLoginError("");
 
     signIn({
       email: values.email,
@@ -23,8 +26,8 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
         }
         handleReset();
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
+        setLoginError("Email or password is incorrect.");
       });
   }
 
@@ -36,10 +39,10 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
       closeActiveModal={onClose}
       onSubmit={handleSubmit}
       buttonText="Log in"
-      secondaryButtonText="Sign up"
+      secondaryButtonText="or Sign up"
       secondaryButtonOnClick={() => {
         onClose();
-        // You can add logic here to open the RegisterModal if needed
+        // You can add logic here to open the RegisterModal if 
       }}
     >
       <label htmlFor="email" name="email" className="modal__lable">
@@ -68,6 +71,7 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
           required
         />
       </label>
+      {loginError && <p className="modal__error">{loginError}</p>}
     </ModalWithForm>
   );
 };

@@ -46,7 +46,7 @@ const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
       closeActiveModal={onClose}
       onSubmit={handleSubmit}
       buttonText="Sign up"
-      secondaryButtonText="Log in"
+      secondaryButtonText="or Log in"
       secondaryButtonOnClick={() => {
         onClose();
         // You can add logic here to open the LoginModal if needed

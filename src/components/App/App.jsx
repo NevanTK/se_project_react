@@ -13,7 +13,7 @@ import { coordinates, apiKey } from "../../utils/constants.js";
 // import { defaultClothingItems } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
-import { getItems, getCurrentUser } from "../../utils/api.js";
+import { getItems, getCurrentUser, updateUser } from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
 import { addItem } from "../../utils/api.js";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal.jsx";
@@ -71,6 +71,12 @@ function App() {
 
   const handleEditProfileClick = () => {
     setActiveModal("edit-profile");
+  };
+
+  const handleSignOutClick = () => {
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    localStorage.removeItem("jwt");
   };
 
   
@@ -152,8 +158,21 @@ function App() {
     closeActiveModal();
   };
 
-  const onUpdateUser = (updatedUser) => {
-    setCurrentUser(updatedUser);
+  const onUpdateUser = (updatedUserData) => {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      console.error("No token found for updating user");
+      return;
+    }
+
+    updateUser(updatedUserData, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Failed to update user", err);
+      });
   };
 
   const onSignOut = () => {
@@ -245,6 +264,7 @@ function App() {
                       deleteItem={deleteItem}
                       currentUser={currentUser}
                       handleEditProfileClick={handleEditProfileClick}
+                      onSignOut={handleSignOutClick}
                     />
                   ) : (
                     <Navigate to="/" replace />

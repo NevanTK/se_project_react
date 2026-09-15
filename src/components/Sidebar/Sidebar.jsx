@@ -3,7 +3,7 @@ import avatar from "../../assets/avatar.svg";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
-export default function Sidebar({handleEditProfileClick}) {
+export default function Sidebar({handleEditProfileClick, onSignOut}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -14,7 +14,12 @@ export default function Sidebar({handleEditProfileClick}) {
                           alt={(currentUser && currentUser.name) || "User"}  className="sidebar__avatar" />
       </div>
       <div className="editProfile">
-        <button className="editProfile__button">Edit profile</button>
+        <button type="button" className="editProfile__btn" onClick={handleEditProfileClick}>
+          Change profile data
+        </button>
+                    <button className="sidebar__signout-btn" onClick={onSignOut}>
+              Sign out
+            </button>
       </div>
     </aside>
   );

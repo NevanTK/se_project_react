@@ -35,3 +35,14 @@ export const getCurrentUser = (token) => {
   });
   return fetch(`${baseUrl}/users/me`, { headers: authHeaders }).then(handleServerResponse);
 };
+
+export const updateUser = (token, updatedUser) => {
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: authHeaders,
+    body: JSON.stringify(updatedUser),
+  }).then(handleServerResponse);
+};

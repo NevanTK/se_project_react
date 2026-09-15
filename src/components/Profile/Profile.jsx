@@ -10,6 +10,7 @@ export default function Profile({
   handleCardClick,
   deleteItem,
   handleAddClick,
+  onSignOut,
   currentUser,
   handleEditProfileClick,
 }) {
@@ -17,6 +18,7 @@ export default function Profile({
     <section className="profile">
       <Sidebar
         handleEditProfileClick={handleEditProfileClick}
+        onSignOut={onSignOut}
         
       />
       <ClothesSection
