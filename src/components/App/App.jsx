@@ -276,7 +276,7 @@ function App() {
               isOpen={activeModal === "login"}
               onClose={closeActiveModal}
               onSignIn={onSignIn}
-              onSwithchToRegister={handleRegisterClick}
+              onSwitchToRegister={handleRegisterClick}
             />
             <RegisterModal
               isOpen={activeModal === "register"}
