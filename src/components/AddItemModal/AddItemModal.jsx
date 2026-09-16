@@ -25,11 +25,11 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
       closeActiveModal={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" name="name" className="modal__lable">
+      <label htmlFor="add-name" name="name" className="modal__lable">
         Name{" "}
         <input
           type="text"
-          id="name"
+          id="add-name"
           name="name"
           className="modal__input"
           placeholder="Name"
@@ -38,11 +38,11 @@ const AddItemModal = ({ isOpen, onClose, onAddItem }) => {
           required
         />
       </label>
-      <label htmlFor="imageUrl" name="imageUrl" className="modal__lable">
+      <label htmlFor="add-imageUrl" name="imageUrl" className="modal__lable">
         Image{" "}
         <input
           type="url"
-          id="imageUrl"
+          id="add-imageUrl"
           name="imageUrl"
           className="modal__input"
           placeholder="Image URL"

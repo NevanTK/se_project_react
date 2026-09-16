@@ -3,7 +3,7 @@ import { useForm } from "../../Hooks/useForm.js";
 import { signIn } from "../../utils/auth.js";
 import { useState } from "react";
 
-const LoginModal = ({ isOpen, onClose, onSignIn }) => {
+const LoginModal = ({ isOpen, onClose, onSignIn, onSwitchToRegister }) => {
   const defaultValues = {
     email: "",
     password: "",
@@ -42,14 +42,15 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
       secondaryButtonText="or Sign up"
       secondaryButtonOnClick={() => {
         onClose();
-        // You can add logic here to open the RegisterModal if 
+        onSwitchToRegister();
+        // You can add logic here to open the RegisterModal if needed
       }}
     >
-      <label htmlFor="email" name="email" className="modal__lable">
+      <label htmlFor="login-email" name="email" className="modal__lable">
         Email{" "}
         <input
           type="email"
-          id="email"
+          id="login-email"
           name="email"
           className="modal__input"
           placeholder="Email"
@@ -58,11 +59,11 @@ const LoginModal = ({ isOpen, onClose, onSignIn }) => {
           required
         />
       </label>
-      <label htmlFor="password" name="password" className="modal__lable">
+      <label htmlFor="login-password" name="password" className="modal__lable">
         Password{" "}
         <input
           type="password"
-          id="password"
+          id="login-password"
           name="password"
           className="modal__input"
           placeholder="Password"

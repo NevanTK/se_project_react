@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
 import { signUp, signIn } from "../../utils/auth.js";
 
-const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
+const RegisterModal = ({ isOpen, onClose, onSignUp, onSwitchToLogin }) => {
   const defaultValues = {
     name: "",
     imageUrl: "",
@@ -49,14 +49,15 @@ const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
       secondaryButtonText="or Log in"
       secondaryButtonOnClick={() => {
         onClose();
+        onSwitchToLogin();
         // You can add logic here to open the LoginModal if needed
       }}
     >
-      <label htmlFor="email" name="email" className="modal__lable">
+      <label htmlFor="register-email" name="email" className="modal__lable">
         Email{" "}
         <input
           type="email"
-          id="email"
+          id="register-email"
           name="email"
           className="modal__input"
           placeholder="Email"
@@ -65,11 +66,11 @@ const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
           required
         />
       </label>
-      <label htmlFor="password" name="password" className="modal__lable">
+      <label htmlFor="register-password" name="password" className="modal__lable">
         Password{" "}
         <input
           type="password"
-          id="password"
+          id="register-password"
           name="password"
           className="modal__input"
           placeholder="Password"
@@ -78,11 +79,11 @@ const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
           required
         />
       </label>
-      <label htmlFor="name" name="name" className="modal__lable">
+      <label htmlFor="register-name" name="name" className="modal__lable">
         Name{" "}
         <input
           type="text"
-          id="name"
+          id="register-name"
           name="name"
           className="modal__input"
           placeholder="Name"
@@ -91,11 +92,11 @@ const RegisterModal = ({ isOpen, onClose, onSignUp }) => {
           required
         />
       </label>
-      <label htmlFor="imageUrl" name="imageUrl" className="modal__lable">
+      <label htmlFor="register-imageUrl" name="imageUrl" className="modal__lable">
         Avatar{" "}
         <input
           type="url"
-          id="imageUrl"
+          id="register-imageUrl"
           name="imageUrl"
           className="modal__input"
           placeholder="Avatar URL"
