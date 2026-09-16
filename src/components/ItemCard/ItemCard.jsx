@@ -1,6 +1,14 @@
 import "./ItemCard.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function ItemCard({ item, onCardClick, deleteItem, onCardLike }) {
+  const currentUser = useContext(CurrentUserContext);  <RegisterModal
+    isOpen={activeModal === "register"}
+    onClose={closeActiveModal}
+    onSignUp={onSignUp}
+    onSwitchToLogin={handleLoginClick}
+  />
   const handleCardClick = () => {
     onCardClick(item);
   };
