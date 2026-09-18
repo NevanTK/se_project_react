@@ -1,7 +1,8 @@
+
+
 .sidebar__user-container {
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
   gap: 15px;
 }
 
@@ -32,7 +33,6 @@
 .editProfile {
   display: flex;
   margin: 0;
-  /* flex-direction: row-reverse; */
-  align-items: center;
+  flex-direction: column;
   gap: 15px;
 }

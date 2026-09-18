@@ -2,6 +2,3 @@
 
 
 css to figma { fix side bar, fix log in/register btns}
-add logic to secondary login/register btns
-
-add backend link to README
