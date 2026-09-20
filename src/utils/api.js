@@ -15,18 +15,50 @@ export const getItems = () => {
 };
 
 export const addItem = (item) => {
+  const token = localStorage.getItem("jwt");
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers,
+    headers: authHeaders,
     body: JSON.stringify(item),
-  }).then(handleServerResponse);
+  }).then(handleServerResponse).then((response) => response.data);
 };
 
 export const deleteItem = (itemId) => {
+  const token = localStorage.getItem("jwt");
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers,
+    headers: authHeaders,
   }).then(handleServerResponse);
+};
+
+export const addCardLike = (itemId, token) => {
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: authHeaders,
+  }).then(handleServerResponse).then((response) => response.data);
+};
+
+export const removeCardLike = (itemId, token) => {
+  const authHeaders = Object.assign({}, headers, {
+    Authorization: `Bearer ${token}`,
+  });
+
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: authHeaders,
+  }).then(handleServerResponse).then((response) => response.data);
 };
 
 export const getCurrentUser = (token) => {

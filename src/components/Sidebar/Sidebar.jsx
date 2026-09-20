@@ -9,9 +9,9 @@ export default function Sidebar({handleEditProfileClick, onSignOut}) {
   return (
     <aside className="sidebar">
       <div className="sidebar__user-container">
+              <img src={(currentUser && currentUser.avatar) || avatar}
+              alt={(currentUser && currentUser.name) || "User"}  className="sidebar__avatar" />
         <p className="sidebar__username">{(currentUser && currentUser.name) || "User"}</p>
-        <img src={(currentUser && currentUser.avatar) || avatar}
-                          alt={(currentUser && currentUser.name) || "User"}  className="sidebar__avatar" />
       </div>
       <div className="editProfile">
         <button type="button" className="editProfile__btn" onClick={handleEditProfileClick}>

@@ -13,7 +13,13 @@ import { coordinates, apiKey } from "../../utils/constants.js";
 // import { defaultClothingItems } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
-import { getItems, getCurrentUser, updateUser } from "../../utils/api.js";
+import {
+  getItems,
+  getCurrentUser,
+  updateUser,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api.js";
 import { deleteItem } from "../../utils/api.js";
 import { addItem } from "../../utils/api.js";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal.jsx";
@@ -79,22 +85,18 @@ function App() {
     localStorage.removeItem("jwt");
   };
 
-  
-
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
 
     !isLiked
-      ? api
-          .addCardLike(id, token)
+      ? addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item)),
             );
           })
           .catch((err) => console.log(err))
-      : api
-          .removeCardLike(id, token)
+        : removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item)),
@@ -112,20 +114,18 @@ function App() {
 
     addItem(newItem)
       .then((addedItem) => {
-        setClothingItems([addedItem, ...clothingItems]);
+        setClothingItems((items) => [addedItem, ...items]);
         resetForm();
         closeActiveModal();
       })
       .catch(console.error);
   };
 
-
-
   const onDeleteItem = () => {
     deleteItem(selectedCard._id)
       .then(() => {
-        setClothingItems(
-          clothingItems.filter((item) => item._id !== selectedCard._id),
+        setClothingItems((items) =>
+          items.filter((item) => item._id !== selectedCard._id),
         );
         closeActiveModal();
       })
@@ -165,7 +165,7 @@ function App() {
       return;
     }
 
-    updateUser(updatedUserData, token)
+    updateUser(token, updatedUserData)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         closeActiveModal();
@@ -283,7 +283,6 @@ function App() {
               onClose={closeActiveModal}
               onSignUp={onSignUp}
               onSwitchToLogin={handleLoginClick}
-              
             />
             <EditProfileModal
               isOpen={activeModal === "edit-profile"}

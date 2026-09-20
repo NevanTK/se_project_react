@@ -6,10 +6,19 @@
   justify-content: center;
 }
 
+.card__item {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+}
+
 .card__title {
   max-width: 73px;
   width: 100%;
-  position: absolute;
+  /* position: absolute; */
   top: 15px;
   margin: 0;
   font-size: 16px;
@@ -26,4 +35,30 @@
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
+}
+
+.card__like-btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 18px;
+  height: 15px;
+  opacity: 0.5;
+  background-image: url("../../assets/like.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.card__like-btn_liked {
+  background-image: url("../../assets/liked.svg");
+  opacity: 1;
+}
+
+.card__like-btn:hover {
+  opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+  opacity: 0.5;
 }

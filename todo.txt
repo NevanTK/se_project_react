@@ -1,4 +1,4 @@
 
 
+fix the hearts and like function
 
-css to figma { fix side bar, fix log in/register btns}

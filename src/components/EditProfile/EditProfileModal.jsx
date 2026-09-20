@@ -12,7 +12,7 @@ console.log("currentUser in EditProfileModal:", currentUser);
 
   const defaultValues = {
     name: "",
-    about: "",
+    avatar: "",
   };
 
   const { values, handleChange, handleReset, setValues } = useForm(defaultValues);
@@ -21,7 +21,7 @@ console.log("currentUser in EditProfileModal:", currentUser);
     if (currentUser && isOpen) {
       setValues({
         name: currentUser.name || "",
-        about: currentUser.about || "",
+        avatar: currentUser.avatar || "",
       });
     }
   }, [isOpen]);
@@ -53,15 +53,15 @@ console.log("currentUser in EditProfileModal:", currentUser);
           required
         />
       </label>
-       <label htmlFor="edit-imageUrl" name="imageUrl" className="modal__lable">
+       <label htmlFor="edit-avatar" name="avatar" className="modal__lable">
         Avatar{" "}
         <input
           type="url"
-          id="edit-imageUrl"
-          name="imageUrl"
+         id="edit-avatar"
+         name="avatar"
           className="modal__input"
           placeholder="Image URL"
-          value={values.imageUrl}
+         value={values.avatar}
           onChange={handleChange}
           required
         />

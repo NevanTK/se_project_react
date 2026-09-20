@@ -55,13 +55,13 @@ function Header({
 
           </>
         ) : (
-          <>
+          <>                      <button className="header__signup-btn" onClick={onRegisterClick}>
+              Sign up
+            </button>
             <button className="header__login-btn" onClick={onLoginClick}>
               Log in
             </button>
-            <button className="header__signup-btn" onClick={onRegisterClick}>
-              Sign up
-            </button>
+
           </>
         )}
       </div>

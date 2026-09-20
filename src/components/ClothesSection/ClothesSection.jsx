@@ -9,7 +9,9 @@ export default function ClothesSection({
   handleAddClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
-const isOwn = currentUser && clothingItems.some(item => item.owner === currentUser._id);
+  const userItems = clothingItems.filter(
+    (item) => currentUser && item.owner === currentUser._id,
+  );
 
   return (
     <div className="clothes-section">
@@ -25,7 +27,7 @@ const isOwn = currentUser && clothingItems.some(item => item.owner === currentUs
       </div>
 
       <ul className="clothes-section__cards-list">
-        {isOwn && clothingItems.map((item) => {
+        {userItems.map((item) => {
           return (
             <ItemCard
               key={item._id}

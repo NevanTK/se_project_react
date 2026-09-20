@@ -2,8 +2,9 @@
 
 .sidebar__user-container {
   display: flex;
-  flex-direction: row-reverse;
+  align-items: center;
   gap: 15px;
+  margin-bottom: 24px;
 }
 
 .sidebar__logo {
@@ -11,7 +12,9 @@
 }
 
 .sidebar__avatar {
-  height: 56px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
 }
 
 .sidebar__username {
@@ -25,14 +28,9 @@
 }
 
 .editProfile__btn {
-  margin: 0;
+margin-bottom: 8px;
   border: none;
   background: none;
 }
 
-.editProfile {
-  display: flex;
-  margin: 0;
-  flex-direction: column;
-  gap: 15px;
-}
+
