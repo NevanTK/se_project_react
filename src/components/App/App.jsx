@@ -96,7 +96,7 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-        : removeCardLike(id, token)
+      : removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item)),
@@ -249,7 +249,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     temperatureUnit={currentTemperatureUnit}
-                    onCardLike={onCardLike}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -265,6 +265,7 @@ function App() {
                       currentUser={currentUser}
                       handleEditProfileClick={handleEditProfileClick}
                       onSignOut={handleSignOutClick}
+                      onCardLike={handleCardLike}
                     />
                   ) : (
                     <Navigate to="/" replace />

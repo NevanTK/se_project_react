@@ -5,8 +5,9 @@ import { signUp, signIn } from "../../utils/auth.js";
 const RegisterModal = ({ isOpen, onClose, onSignUp, onSwitchToLogin }) => {
   const defaultValues = {
     name: "",
-    imageUrl: "",
-    weather: "",
+    avatar: "",
+    email: "",
+    password: "",
   };
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
@@ -16,7 +17,7 @@ const RegisterModal = ({ isOpen, onClose, onSignUp, onSwitchToLogin }) => {
 
     signUp({
       name: values.name,
-      avatar: values.imageUrl,
+      avatar: values.avatar,
       email: values.email,
       password: values.password,
     })
@@ -92,15 +93,15 @@ const RegisterModal = ({ isOpen, onClose, onSignUp, onSwitchToLogin }) => {
           required
         />
       </label>
-      <label htmlFor="register-imageUrl" name="imageUrl" className="modal__lable">
+      <label htmlFor="register-avatar" name="avatar" className="modal__lable">
         Avatar{" "}
         <input
           type="url"
-          id="register-imageUrl"
-          name="imageUrl"
+          id="register-avatar"
+          name="avatar"
           className="modal__input"
           placeholder="Avatar URL"
-          value={values.imageUrl}
+          value={values.avatar}
           onChange={handleChange}
           required
         />

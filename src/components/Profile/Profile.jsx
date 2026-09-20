@@ -13,6 +13,7 @@ export default function Profile({
   onSignOut,
   currentUser,
   handleEditProfileClick,
+  onCardLike,
 }) {
   return (
     <section className="profile">
@@ -26,6 +27,8 @@ export default function Profile({
         handleCardClick={handleCardClick}
         deleteItem={deleteItem}
         handleAddClick={handleAddClick}
+        onCardLike={onCardLike}
+
       />
     </section>
   );
