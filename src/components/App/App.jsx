@@ -85,21 +85,21 @@ function App() {
     localStorage.removeItem("jwt");
   };
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = ({ itemId, isLiked }) => {
     const token = localStorage.getItem("jwt");
 
     !isLiked
-      ? addCardLike(id, token)
+      ? addCardLike(itemId, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item)),
+              cards.map((item) => (item._id === itemId ? updatedCard : item)),
             );
           })
           .catch((err) => console.log(err))
-      : removeCardLike(id, token)
+      : removeCardLike(itemId, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item)),
+              cards.map((item) => (item._id === itemId ? updatedCard : item)),
             );
           })
           .catch((err) => console.log(err));
@@ -183,7 +183,7 @@ function App() {
     }
     setIsLoggedIn(false);
     setCurrentUser(null);
-    setActiveModal("");
+    closeActiveModal();
   };
 
   const onSignUp = (userData) => {
@@ -238,7 +238,6 @@ function App() {
               onLoginClick={handleLoginClick}
               onRegisterClick={handleRegisterClick}
               onSignOut={onSignOut}
-              currentUser={currentUser}
             />
             <Routes>
               <Route
@@ -262,7 +261,6 @@ function App() {
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       deleteItem={deleteItem}
-                      currentUser={currentUser}
                       handleEditProfileClick={handleEditProfileClick}
                       onSignOut={handleSignOutClick}
                       onCardLike={handleCardLike}

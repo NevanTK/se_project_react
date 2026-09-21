@@ -8,7 +8,7 @@ export function useForm(defaultValues) {
     setValues({ ...values, [name]: value });
   };
 
-const handleReset = () => {
+  const handleReset = () => {
     setValues(defaultValues);
   };
 

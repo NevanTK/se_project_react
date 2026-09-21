@@ -1,21 +1,22 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
-import {useForm} from "../../Hooks/useForm";
+import { useForm } from "../../Hooks/useForm";
 import { useContext, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 const EditProfileModal = ({ isOpen, onClose, onUpdateUser }) => {
   const currentUser = useContext(CurrentUserContext);
-console.log("currentUser in EditProfileModal:", currentUser);
-// if (!currentUser) {
-//     return null; // or return a loading indicator, or a message saying "User not found"
-//   }
+  console.log("currentUser in EditProfileModal:", currentUser);
+  // if (!currentUser) {
+  //     return null; // or return a loading indicator, or a message saying "User not found"
+  //   }
 
   const defaultValues = {
     name: "",
     avatar: "",
   };
 
-  const { values, handleChange, handleReset, setValues } = useForm(defaultValues);
+  const { values, handleChange, handleReset, setValues } =
+    useForm(defaultValues);
 
   useEffect(() => {
     if (currentUser && isOpen) {
@@ -53,15 +54,15 @@ console.log("currentUser in EditProfileModal:", currentUser);
           required
         />
       </label>
-       <label htmlFor="edit-avatar" name="avatar" className="modal__lable">
+      <label htmlFor="edit-avatar" name="avatar" className="modal__lable">
         Avatar{" "}
         <input
           type="url"
-         id="edit-avatar"
-         name="avatar"
+          id="edit-avatar"
+          name="avatar"
           className="modal__input"
           placeholder="Image URL"
-         value={values.avatar}
+          value={values.avatar}
           onChange={handleChange}
           required
         />

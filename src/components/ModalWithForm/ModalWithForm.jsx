@@ -12,7 +12,7 @@ function ModalWithForm({
   onSubmit,
 }) {
   useEscapeClose(isOpen, closeActiveModal);
-   return (
+  return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
@@ -44,6 +44,5 @@ function ModalWithForm({
     </div>
   );
 }
-
 
 export default ModalWithForm;

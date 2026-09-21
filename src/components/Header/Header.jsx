@@ -1,6 +1,5 @@
 import "./Header.css";
 import logo from "../../assets/Logo.svg";
-import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -12,8 +11,8 @@ function Header({
   isLoggedIn,
   onLoginClick,
   onRegisterClick,
-  currentUser,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -49,19 +48,23 @@ function Header({
                     alt={currentUser.name}
                     className="header__avatar"
                   />
-                ): (<span className="header__avatar-placeholder">{ currentUser.name.charAt(0) }</span>)}
+                ) : (
+                  <span className="header__avatar-placeholder">
+                    {currentUser?.name?.charAt(0) || "?"}
+                  </span>
+                )}
               </div>
             </NavLink>
-
           </>
         ) : (
-          <>                      <button className="header__signup-btn" onClick={onRegisterClick}>
+          <>
+            {" "}
+            <button className="header__signup-btn" onClick={onRegisterClick}>
               Sign up
             </button>
             <button className="header__login-btn" onClick={onLoginClick}>
               Log in
             </button>
-
           </>
         )}
       </div>

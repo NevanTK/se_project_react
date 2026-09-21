@@ -23,7 +23,7 @@ function ItemCard({ item, onCardClick, deleteItem, onCardLike }) {
         <button
           type="button"
           className={itemLikeButtonClassName}
-          onClick={() => onCardLike({ id: item._id, isLiked })}
+          onClick={() => onCardLike({ itemId: item._id, isLiked })}
           aria-label={isLiked ? "Remove like" : "Add like"}
         />
       </div>

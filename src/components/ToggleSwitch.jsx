@@ -17,12 +17,16 @@ export default function ToggleSwitch() {
       />
       <span className="toggleSwitch_slider"></span>
       <span
-        className={`toggleSwitch_text toggleSwitch__text_F ${temperatureUnit === "F" ? "toggleSwitch_text_color_white" : ""}`}
+        className={`toggleSwitch_text toggleSwitch__text_F ${
+          temperatureUnit === "F" ? "toggleSwitch_text_color_white" : ""
+        }`}
       >
         F
       </span>
       <span
-        className={`toggleSwitch_text toggleSwitch__text_C ${temperatureUnit === "C" ? "toggleSwitch_text_color_white" : ""}`}
+        className={`toggleSwitch_text toggleSwitch__text_C ${
+          temperatureUnit === "C" ? "toggleSwitch_text_color_white" : ""
+        }`}
       >
         C
       </span>

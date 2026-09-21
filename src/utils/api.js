@@ -10,8 +10,12 @@ export const handleServerResponse = (response) => {
     : Promise.reject(`Error: ${response.status}`);
 };
 
+export const request = (url, options) => {
+  return fetch(url, options).then(handleServerResponse);
+};
+
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`, { headers }).then(handleServerResponse);
+  return request(`${baseUrl}/items`, { headers });
 };
 
 export const addItem = (item) => {
@@ -20,11 +24,11 @@ export const addItem = (item) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify(item),
-  }).then(handleServerResponse).then((response) => response.data);
+  }).then((response) => response.data);
 };
 
 export const deleteItem = (itemId) => {
@@ -33,10 +37,10 @@ export const deleteItem = (itemId) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return fetch(`${baseUrl}/items/${itemId}`, {
+  return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: authHeaders,
-  }).then(handleServerResponse);
+  });
 };
 
 export const addCardLike = (itemId, token) => {
@@ -44,10 +48,10 @@ export const addCardLike = (itemId, token) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: authHeaders,
-  }).then(handleServerResponse).then((response) => response.data);
+  }).then((response) => response.data);
 };
 
 export const removeCardLike = (itemId, token) => {
@@ -55,26 +59,26 @@ export const removeCardLike = (itemId, token) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: authHeaders,
-  }).then(handleServerResponse).then((response) => response.data);
+  }).then((response) => response.data);
 };
 
 export const getCurrentUser = (token) => {
   const authHeaders = Object.assign({}, headers, {
     Authorization: `Bearer ${token}`,
   });
-  return fetch(`${baseUrl}/users/me`, { headers: authHeaders }).then(handleServerResponse);
+  return request(`${baseUrl}/users/me`, { headers: authHeaders });
 };
 
 export const updateUser = (token, updatedUser) => {
   const authHeaders = Object.assign({}, headers, {
     Authorization: `Bearer ${token}`,
   });
-  return fetch(`${baseUrl}/users/me`, {
+  return request(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: authHeaders,
     body: JSON.stringify(updatedUser),
-  }).then(handleServerResponse);
+  });
 };

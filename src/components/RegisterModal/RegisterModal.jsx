@@ -67,7 +67,11 @@ const RegisterModal = ({ isOpen, onClose, onSignUp, onSwitchToLogin }) => {
           required
         />
       </label>
-      <label htmlFor="register-password" name="password" className="modal__lable">
+      <label
+        htmlFor="register-password"
+        name="password"
+        className="modal__lable"
+      >
         Password{" "}
         <input
           type="password"
