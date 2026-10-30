@@ -1,3 +1,8 @@
+export const BASE_URL = "production" 
+  ? "https://api.Pract1ce.servernux.com"
+  : "http://localhost:3001";
+
+
 export const weatherTypes = [
   {
     day: true,

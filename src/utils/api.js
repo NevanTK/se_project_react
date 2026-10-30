@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "../utils/constants";
 
 const headers = {
   "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const request = (url, options) => {
 };
 
 export const getItems = () => {
-  return request(`${baseUrl}/items`, { headers });
+  return request(`${BASE_URL}/items`, { headers });
 };
 
 export const addItem = (item) => {
@@ -24,7 +24,7 @@ export const addItem = (item) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return request(`${baseUrl}/items`, {
+  return request(`${BASE_URL}/items`, {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify(item),
@@ -37,7 +37,7 @@ export const deleteItem = (itemId) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return request(`${baseUrl}/items/${itemId}`, {
+  return request(`${BASE_URL}/items/${itemId}`, {
     method: "DELETE",
     headers: authHeaders,
   });
@@ -48,7 +48,7 @@ export const addCardLike = (itemId, token) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return request(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${BASE_URL}/items/${itemId}/likes`, {
     method: "PUT",
     headers: authHeaders,
   }).then((response) => response.data);
@@ -59,7 +59,7 @@ export const removeCardLike = (itemId, token) => {
     Authorization: `Bearer ${token}`,
   });
 
-  return request(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${BASE_URL}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: authHeaders,
   }).then((response) => response.data);
@@ -69,14 +69,14 @@ export const getCurrentUser = (token) => {
   const authHeaders = Object.assign({}, headers, {
     Authorization: `Bearer ${token}`,
   });
-  return request(`${baseUrl}/users/me`, { headers: authHeaders });
+  return request(`${BASE_URL}/users/me`, { headers: authHeaders });
 };
 
 export const updateUser = (token, updatedUser) => {
   const authHeaders = Object.assign({}, headers, {
     Authorization: `Bearer ${token}`,
   });
-  return request(`${baseUrl}/users/me`, {
+  return request(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: authHeaders,
     body: JSON.stringify(updatedUser),
