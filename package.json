@@ -11,7 +11,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && start wtwr"
+    "deploy": "npm run build && scp -r ./dist/*  nnaskey@Pract1ce.servernux.com:/home/nnaskey/frontend"
   },
   "dependencies": {
     "cd": "^0.3.3",
