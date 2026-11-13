@@ -1,4 +1,4 @@
-export const BASE_URL = "production" 
+export const BASE_URL = import.meta.env.PROD
   ? "https://api.Pract1ce.servernux.com"
   : "http://localhost:3001";
 
